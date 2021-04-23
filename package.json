@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/jfcordovam/rick-n-morty-challenge#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "require": "^2.4.20"
