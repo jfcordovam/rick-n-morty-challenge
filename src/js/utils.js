@@ -20,7 +20,7 @@ module.exports = {
          return Promise.all(apiPromises)
             .then(responses => {
 
-               let collection = responses.reduce((acc, response) => [...acc, ...response.results], []) // get all pages results
+               let collection = responses.reduce((acc, response) => [...acc, ...response.results], []) // get all accumulated pages results
 
                performance.mark(`${resource}-end`)
                performance.measure(`${resource}-results`, `${resource}-start`, `${resource}-end`)
@@ -30,7 +30,6 @@ module.exports = {
             }).then(results => results)
       })
    },
-
    charCounter(char, resource, collection) {
       let count = collection.reduce((i, name) => {
          let re = new RegExp(char, "g");
