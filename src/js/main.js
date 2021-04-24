@@ -7,19 +7,20 @@ module.exports = {
       // Measure main execution time
       let mainRunTime = 0;
       performance.mark("main-start")
-      let results = []
+      let results = [] // Array of strings, it makes it easier to render in template
 
       //  For each resource, make the api calls and measure runtime
       Promise.all([
          utils.fetchResource('character'),
          utils.fetchResource('episode'),
          utils.fetchResource('location')
-      ]).then(([characters, episodes, locations]) => {
+      ]).then(([characters, episodes, locations]) => { // each one is structured as: { 'resource': <string>, 'collection': <array>, 'time': <float> }
 
          // *** First challenge: character counter ***
          results.push('First challenge: char counter');
          let apiRunTime = Math.max(characters.time, episodes.time, locations.time); // Get max time between each of the calls
 
+         // Count ocurrences of given character in each resources names
          results.push(utils.charCounter("l", locations.resource, locations.collection.map(e => e.name)))
          results.push(utils.charCounter("e", episodes.resource, episodes.collection.map(e => e.name)))
          results.push(utils.charCounter("c", characters.resource, characters.collection.map(e => e.name)))
@@ -27,8 +28,9 @@ module.exports = {
          performance.mark("main-end")
          performance.measure("main", "main-start", "main-end")
          mainRunTime = performance.nodeTiming.duration
+         let totalRunTime = Math.trunc(Math.max(mainRunTime, apiRunTime)) // Get max runtime between main and api call runtime, since they are async
 
-         results.push(`Execution time duration for first challenge: ${Math.trunc(mainRunTime + apiRunTime)}ms.`) // Add main runtime and api call runtime
+         results.push(`Execution time duration for first challenge: ${totalRunTime}ms.`)
 
          mainRunTime = 0
          performance.clearMarks();
@@ -37,14 +39,15 @@ module.exports = {
          performance.mark("main-start")
          results.push('Second challenge: episode locations')
 
+         // Iterate each character in each episode to get their origin location
          episodes.collection.forEach(episode => {
 
-            let locations = new Set()
+            let locations = new Set() // A set avoids repetition
 
             episode.characters.forEach(character => {
 
+               // get origin name and add it to set
                let characterId = parseInt(character.split('/')[5]);
-
                locations.add(characters.collection.find(c => c.id === characterId).origin.name)
             });
 
