@@ -6,6 +6,9 @@ module.exports = {
    },
    getNames(resources) {
       return resources.map(element => element.name)
+   },
+   getCharacterOrigin(id, characters) {
+      return characters.find(c => c.id === id).origin.name
    }
 }
 

@@ -14,15 +14,17 @@
 </head>
 
 <body>
-   <h1>Rick and Morty coding test</h1>
+   <h1>🧪 Rick and Morty coding test</h1>
    <div class="container">
-      <%if (results1) { %>
-         <h3>First challenge: char counter</h3>
+      <% if (results) { %>
          <div class="jumbotron">
-            <%= results1 %>
+            <% results.forEach(function(str){ %>
+               <p>
+                  <%= str %>
+               </p>
+            <% }) %>
          </div>
          <% } %>
-
    </div>
 </body>
 
