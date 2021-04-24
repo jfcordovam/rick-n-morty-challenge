@@ -9,13 +9,14 @@ module.exports = {
    },
    getCharacterOrigin(id, characters) {
       return characters.find(c => c.id === id).origin.name
+   },
+   countChars(char, word) {
+      return word.reduce((i, letter) => {
+         if (char.toLowerCase() === letter.toLowerCase()) {
+            return i + 1
+         } else return i
+      }, 0);
    }
 }
 
-function countChars(char, word) {
-   return word.reduce((i, letter) => {
-      if (char.toLowerCase() === letter.toLowerCase()) {
-         return i + 1
-      } else return i
-   }, 0);
-}
+

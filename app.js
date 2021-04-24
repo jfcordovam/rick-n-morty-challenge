@@ -15,10 +15,6 @@ app.listen(port, () => {
       res.render('index', { results: results });
     });
   })
-
-  // Second challenge
-
-
 })
 
 
