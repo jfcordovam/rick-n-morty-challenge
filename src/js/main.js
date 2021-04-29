@@ -21,9 +21,9 @@ module.exports = {
          let apiRunTime = Math.max(characters.time, episodes.time, locations.time); // Get max time between each of the calls
 
          // Count ocurrences of given character in each resources names
-         results.push(utils.charCounter("l", locations.resource, locations.collection.map(e => e.name)))
-         results.push(utils.charCounter("e", episodes.resource, episodes.collection.map(e => e.name)))
-         results.push(utils.charCounter("c", characters.resource, characters.collection.map(e => e.name)))
+         results.push(utils.getCharOcurrences("l", locations.resource, locations.collection.map(e => e.name)))
+         results.push(utils.getCharOcurrences("e", episodes.resource, episodes.collection.map(e => e.name)))
+         results.push(utils.getCharOcurrences("c", characters.resource, characters.collection.map(e => e.name)))
 
          performance.mark("main-end")
          performance.measure("main", "main-start", "main-end")

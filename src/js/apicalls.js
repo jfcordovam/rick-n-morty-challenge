@@ -6,7 +6,6 @@ module.exports = {
    get(endpoint) {
       return fetch(BASE_API_URL + endpoint)
          .then(response => response.json())
-         .then(data => data)
          .catch(error => console.error(error));
    },
 }

@@ -44,8 +44,6 @@ describe('fetch has calculated run time for each call', () => {
 
 });
 
-
-
 const collection = ['Pilot',
    'Meeseeks and Destroy',
    'Something Ricked This Way Comes']
@@ -54,38 +52,35 @@ const collection = ['Pilot',
 describe('char counter returns a defined string for each resource', () => {
 
    test('char counter returns a defined string for character', () => {
-      expect(utils.charCounter('c', 'character', collection)).not.toBeUndefined();
+      expect(utils.getCharOcurrences('c', 'character', collection)).not.toBeUndefined();
    });
 
    test('char counter returns a defined string for episode', () => {
-      expect(utils.charCounter('e', 'episode', collection)).not.toBeUndefined();
+      expect(utils.getCharOcurrences('e', 'episode', collection)).not.toBeUndefined();
    });
 
    test('char counter returns a defined string for location', () => {
-      expect(utils.charCounter('l', 'location', collection)).not.toBeUndefined();
+      expect(utils.getCharOcurrences('l', 'location', collection)).not.toBeUndefined();
    });
 });
 
-const characters = ['Rick Sanchez', 'Morty Smith', 'Summer Smith', 'Albert Einstein'], // Has 2 "c"
+const characters = ['Rick Sanchez', 'Morty Smith', 'Summer Smith', 'Albert Einstein', 'Centaur', 'Chris'], // Has 4 "c"
    episodes = ['Pilot', 'Lawnmower Dog', 'Anatomy Park', 'Meeseeks and Destroy'], // Has 6 "e"
    locations = ['Earth (C-137)', 'Abadango', 'Citadel of Ricks', 'Anatomy Park']; // Has 1 "l"
 
 
-describe('char counter has to count characters correctly', () => {
+describe('char counter has to count characters correctly (case insensitive)', () => {
 
    test('char counter returns the correct string for characters', () => {
-      expect(utils.charCounter('c', 'character', characters))
-         .toEqual(`The char "c" has 2 ocurrences in character names.`);
+      expect(utils.countChars('c', characters)).toEqual(4);
    });
 
    test('char counter returns the correct string for episodes', () => {
-      expect(utils.charCounter('e', 'episode', episodes))
-         .toEqual(`The char "e" has 6 ocurrences in episode names.`);
+      expect(utils.countChars('e', episodes)).toEqual(6);
    });
 
    test('char counter returns the correct string for locations', () => {
-      expect(utils.charCounter('l', 'location', locations))
-         .toEqual(`The char "l" has 1 ocurrences in location names.`);
+      expect(utils.countChars('l', locations)).toEqual(1);
    });
 });
 
