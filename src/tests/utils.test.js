@@ -71,15 +71,15 @@ const characters = ['Rick Sanchez', 'Morty Smith', 'Summer Smith', 'Albert Einst
 
 describe('char counter has to count characters correctly (case insensitive)', () => {
 
-   test('char counter returns the correct string for characters', () => {
+   test('char counter returns the number of ocurrences for characters names', () => {
       expect(utils.countChars('c', characters)).toEqual(4);
    });
 
-   test('char counter returns the correct string for episodes', () => {
+   test('char counter returns the number of ocurrences for episodes names', () => {
       expect(utils.countChars('e', episodes)).toEqual(6);
    });
 
-   test('char counter returns the correct string for locations', () => {
+   test('char counter returns the number of ocurrences for locations names', () => {
       expect(utils.countChars('l', locations)).toEqual(1);
    });
 });
